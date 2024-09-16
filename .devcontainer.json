@@ -1,0 +1,10 @@
+{
+    "name": "Haskell",
+    "image": "haskell:9.6.6",
+    "customizations": {
+        "vscode": {
+            "extensions": ["hoovercj.vscode-haskell"]
+
+        }
+    }
+}
