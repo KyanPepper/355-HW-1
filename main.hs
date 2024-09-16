@@ -3,6 +3,10 @@
 
 import Test.HUnit
 
+-- Kyan Kotschevar-Smead
+-- 011805147
+-- 355 HW 1
+
 dropList :: Int -> [a] -> [a]
 dropList x [] = []  --On empty list return empty list
 dropList 0 xs = xs  --On n = 0 return remaining list
