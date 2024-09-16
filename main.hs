@@ -41,3 +41,31 @@ mergeDescending xs [] = xs  -- If 1 list is empty return non empty list
 mergeDescending (x:xs) (y:ys) -- if(x >=  y) append head of xs (x) to new list then recurse with rest of xs and y,ys. if not x>=y vice versa with ys
   | x >= y    = x : mergeDescending xs (y:ys)   -- (>=) because if x == y, x is appended first then y is appended which shouldnt make a difference given same value
   | otherwise = y : mergeDescending (x:xs) ys  
+
+
+mergeSort :: Ord a => [a] -> [a]
+mergeSort [] = []  -- If list is empty return empty list
+mergeSort [x] = [x]  -- If list is one element  its sorted thus do nothing and return
+mergeSort xs = 
+  let mid = length xs `div` 2  -- Find the middle index
+      (left, right) = splitAtIndex mid xs  -- Split the list at the middle index into two lists see (splitAtIndex) for implementation
+  in mergeAscending (mergeSort left) (mergeSort right)  -- Recursively call mergeAscending  which will merge the two elements in ascending order see (mergeAscending) for implementation
+
+
+-- Insert an element into its correct position in a sorted list
+insertHelper :: Ord a => a -> [a] -> [a]
+insertHelper x [] = [x] -- If list ((Y;ys)) is empty return list with x
+insertHelper x (y:ys) -- Inserts new element x into correct position in sorted list
+  | x <= y    = x : y : ys  -- Append before the first larger element
+  | otherwise = y : insertHelper x ys  -- Recursively find index where x is less then y (head)
+
+
+
+insertionSort :: Ord a => [a] -> [a]
+insertionSort [] = []  -- if list is empty return empty list
+insertionSort (x:xs) = insertHelper x (insertionSort xs) --break down list element by element recursively till sorted see insertHelper for implementation 
+
+
+
+
+
